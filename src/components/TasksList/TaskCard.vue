@@ -17,10 +17,10 @@ const emit = defineEmits<Emits>()
 <template>
   <UCard variant="subtle" :ui="{ body: 'sm:py-4' }">
     <template #header>
-      <div class="flex justify-between items-center">
-        <div class="font-semibold">{{ task.title }}</div>
+      <div class="flex justify-between items-start sm:items-center">
+        <div class="font-semibold leading-none">{{ task.title }}</div>
 
-        <div class="space-x-2">
+        <div class="flex flex-col sm:flex-row gap-2 whitespace-nowrap self-start">
           <UButton
             icon="i-lucide-check"
             color="success"
@@ -40,7 +40,7 @@ const emit = defineEmits<Emits>()
     </template>
 
     <template #default v-if="task.description">
-      <div class="text-sm">{{ task.description }}</div>
+      <div class="text-sm leading-tight">{{ task.description }}</div>
     </template>
   </UCard>
 </template>

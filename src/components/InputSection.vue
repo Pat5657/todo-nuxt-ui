@@ -12,6 +12,7 @@ function handleAddToDo() {
   if (!title.value) {
     toast.add({
       title: 'Provide title for the task',
+      color: 'error',
     })
     return
   }
@@ -35,16 +36,18 @@ function resetInput() {
       size="xl"
       placeholder="Enter your task here..."
       class="w-full"
+      :ui="{ trailing: 'pe-1' }"
     >
       <template #trailing>
-        <UButton
-          @click="handleAddToDo"
-          icon="i-lucide-plus"
-          label="Add"
-          color="primary"
-          variant="soft"
-          tabindex="-1"
-        />
+        <span v-if="title" class="hidden sm:flex items-center gap-0.5 mr-2">
+          <UKbd value="ctrl" />
+          <UKbd value="enter" />
+        </span>
+
+        <UButton @click="handleAddToDo" label="Add" color="primary" variant="soft" tabindex="-1">
+          <UIcon name="i-lucide-plus" class="size-5" />
+          <span class="hidden sm:inline">Add</span>
+        </UButton>
       </template>
     </UInput>
 
@@ -55,7 +58,8 @@ function resetInput() {
         variant="subtle"
         placeholder="Description..."
         autoresize
-        class="w-full"
+        class="w-full h-full"
+        :ui="{ base: 'h-full' }"
       />
     </div>
   </div>
